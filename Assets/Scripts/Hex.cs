@@ -293,4 +293,15 @@ public class Hex : IEnumerable<int>
 
         return ret;
     }
+
+    /// <summary>
+    /// Calculates the distance between two Hexes.
+    /// </summary>
+    /// <param name="a">The first Hex.</param>
+    /// <param name="b">The second Hex.</param>
+    /// <returns></returns>
+    public static int Distance(Hex a, Hex b)
+    {
+        return (a - b).Length;
+    }
 }
