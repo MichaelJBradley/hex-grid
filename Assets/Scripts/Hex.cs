@@ -15,6 +15,20 @@ public class Hex : IEnumerable<int>
     /// 3 for Cube coordinates (q, r, s).
     /// </summary>
     public const uint NumComponents = 3;
+
+    /// <summary>
+    /// Defines Hexes for all directions.
+    /// </summary>
+    public static readonly Dictionary<Direction, Hex> Directions = new Dictionary<Direction, Hex>
+    {
+        {Direction.PosS, new Hex(0, -1, 1)},
+        {Direction.NegQ, new Hex(-1, 0, 1)},
+        {Direction.PosR, new Hex(-1, 1, 0)},
+        {Direction.NegS, new Hex(0, 1, -1)},
+        {Direction.PosQ, new Hex(1, 0, -1)},
+        {Direction.NegR, new Hex(1, -1, 0)}
+    };
+    
     
     private int q;
     private int r;
@@ -160,6 +174,16 @@ public class Hex : IEnumerable<int>
     /// </summary>
     public int Length => Math.Max(Math.Abs(Q), Math.Max(Math.Abs(R), Math.Abs(S)));
 
+    /// <summary>
+    /// Calculates the neighboring Hex in a given direction.
+    /// </summary>
+    /// <param name="d">The direction in which to calculate the neighbor.</param>
+    /// <returns>The neighboring Hex as a new object.</returns>
+    public Hex Neighbor(Direction d)
+    {
+        return this + Directions[d];
+    }
+
 
     /// <summary>
     /// Defines how two Hexes are equivalent. 
@@ -299,7 +323,7 @@ public class Hex : IEnumerable<int>
     /// </summary>
     /// <param name="a">The first Hex.</param>
     /// <param name="b">The second Hex.</param>
-    /// <returns></returns>
+    /// <returns>The distance between the two hexes.</returns>
     public static int Distance(Hex a, Hex b)
     {
         return (a - b).Length;
