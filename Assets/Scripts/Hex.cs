@@ -156,6 +156,12 @@ public class Hex : IEnumerable<int>
 
 
     /// <summary>
+    /// Returns the length of the Hex from the origin.
+    /// </summary>
+    public int Length => Math.Max(Math.Abs(Q), Math.Max(Math.Abs(R), Math.Abs(S)));
+
+
+    /// <summary>
     /// Defines how two Hexes are equivalent. 
     /// </summary>
     /// <param name="a">The Hex to compare.</param>
