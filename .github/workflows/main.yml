@@ -1,0 +1,44 @@
+name: Test Project 🎮
+on: [push]
+jobs:
+  requestActivation:
+    name: Request activation ✔
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout Repository
+    - name: Checkout repository
+      uses: actions/checkout@v1
+
+    # Activate Unity
+    - name: Activate Unity
+      uses: webbertakken/unity-activate@v1
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+  testRunner:
+    name: Test Runner 📋
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout repository (required to test local actions)
+    - name: Checkout repository
+      uses: actions/checkout@v1
+
+    # Configure test runner
+    - name: Run tests
+      id: myTestStep
+      uses: webbertakken/unity-test-runner@v1
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        # Choose: "all", "playmode", "editmode"
+        TEST_MODE: playmode
+        # Optional: Path to your project, leave blank for "./"
+        #PROJECT_PATH:
+        # Optional: Artifacts path, leave blank for "artifacts"
+        #ARTIFACTS_PATH:
+
+    # Upload artifacts
+    - name: Upload test results
+      uses: actions/upload-artifact@v1
+      with:
+        name: Test results
+        path: ${{ steps.myTestStep.outputs.artifactsPath }}
