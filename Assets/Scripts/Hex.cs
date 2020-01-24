@@ -195,6 +195,11 @@ public class Hex : IEnumerable<int>
         return this == h;
     }
 
+    public override int GetHashCode()
+    {
+        return q ^ r;
+    }
+
     /// <summary>
     /// Defines how two Hexes are equivalent. 
     /// </summary>
