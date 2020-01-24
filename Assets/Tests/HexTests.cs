@@ -302,5 +302,31 @@ namespace Tests
             
             Assert.That(a.Neighbor(Direction.NegS), Is.EquivalentTo(new Hex(6, 8, -14)));
         }
+
+        [Test]
+        public void Hex_DoesNotEqual_Null()
+        {
+            Hex h = new Hex();
+            
+            Assert.That(h.Equals(null), Is.False);
+        }
+
+        // This may be a silly test, but I want to make sure different types don't slip past.
+        [Test]
+        public void Hex_DoesNotEqual_List()
+        {
+            Hex h = new Hex();
+            
+            Assert.That(h.Equals(new List<string>()), Is.False);
+        }
+
+        [Test]
+        public void Hex_Equals_HexWithSameNumbers()
+        {
+            Hex a = new Hex(9, 1);
+            Hex b = new Hex(9, 1);
+            
+            Assert.That(a.Equals(b), Is.True);
+        }
     }
 }

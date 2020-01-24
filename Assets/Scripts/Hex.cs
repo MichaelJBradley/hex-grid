@@ -184,6 +184,16 @@ public class Hex : IEnumerable<int>
         return this + Directions[d];
     }
 
+    public override bool Equals(object obj)
+    {
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+
+        Hex h = obj as Hex;
+        return this == h;
+    }
 
     /// <summary>
     /// Defines how two Hexes are equivalent. 
