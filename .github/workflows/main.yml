@@ -1,4 +1,4 @@
-name: Test Hex Grid ⬡ 
+name: ⬡ Test Hex Grid ⬡ 
 on: [push]
 jobs:
   testRunner:
@@ -12,6 +12,8 @@ jobs:
 
     - name: Unity - Activate
       uses: webbertakken/unity-activate@v1.2
+      with:
+        unityVersion: 2020.1.3f1
 
     - name: Unity - Test runner
       uses: webbertakken/unity-test-runner@v1.6
