@@ -210,11 +210,11 @@ public class Hex : IEnumerable<int>
     /// <c>a.Q == b.Q</c> and <c>a.R == b.R</c> or <c>false</c> otherwise.</returns>
     public static bool operator ==(Hex a, Hex b)
     {
-        if (a == null && b == null)
+        if (!a && !b)
         {
             return true;
         } 
-        if (a == null || b == null)
+        if (!a || !b)
         {
             return false;
         }
@@ -239,6 +239,16 @@ public class Hex : IEnumerable<int>
     public static bool operator !=(Hex a, Hex b)
     {
         return !(a == b);
+    }
+
+    /// <summary>
+    /// Determines whether the Hex is null.
+    /// </summary>
+    /// <param name="h">The Hex to test for nullity.</param>
+    /// <returns><c>true</c> if <c>h</c> is null or <c>false</c> otherwise.</returns>
+    public static bool operator !(Hex h)
+    {
+        return h is null;
     }
 
     /// <summary>
