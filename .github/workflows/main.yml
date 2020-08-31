@@ -15,7 +15,7 @@ jobs:
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with: 
-        projectPath: /
+        projectPath: .
         unityVersion: 2020.1.3f1
 
     - name: Upload test artifacts
