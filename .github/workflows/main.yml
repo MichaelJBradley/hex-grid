@@ -1,44 +1,34 @@
-name: Test Project 🎮
+name: Tests 
 on: [push]
 jobs:
-  requestActivation:
-    name: Request activation ✔
-    runs-on: ubuntu-latest
-    steps:
-    # Checkout Repository
-    - name: Checkout repository
-      uses: actions/checkout@v1
-
-    # Activate Unity
-    - name: Activate Unity
-      uses: webbertakken/unity-activate@v1
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
   testRunner:
-    name: Test Runner 📋
+    name: Test Runner 📝
     runs-on: ubuntu-latest
     steps:
-    # Checkout repository (required to test local actions)
     - name: Checkout repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2.3.2
+      with:
+        lfs: true
 
-    # Configure test runner
-    - name: Run tests
-      id: myTestStep
-      uses: webbertakken/unity-test-runner@v1
+    - name: Cache library files
+      uses: actions/cache@v2.1.1
+      with:
+        path: Library
+        key: Library-Hex-Grid-Tests
+        restore-keys: |
+          Library-Hex-Grid-
+          Library-
+
+    - name: Unity - Test runner
+      uses: webbertakken/unity-test-runner@v1.6
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        # Choose: "all", "playmode", "editmode"
-        TEST_MODE: playmode
-        # Optional: Path to your project, leave blank for "./"
-        #PROJECT_PATH:
-        # Optional: Artifacts path, leave blank for "artifacts"
-        #ARTIFACTS_PATH:
+      with: 
+        unityVersion: 2020.1.3f1
+        testMode: playmode
 
-    # Upload artifacts
-    - name: Upload test results
-      uses: actions/upload-artifact@v1
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v2
       with:
-        name: Test results
-        path: ${{ steps.myTestStep.outputs.artifactsPath }}
+        name: Test Results
+        path: artifacts
