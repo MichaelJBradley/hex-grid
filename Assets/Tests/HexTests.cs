@@ -302,13 +302,5 @@ namespace Tests
             
             Assert.That(a.Neighbor(Direction.NegS), Is.EquivalentTo(new Hex(6, 8, -14)));
         }
-
-        [Test]
-        public void FailingTest()
-        {
-            Hex a = null;
-            
-            Assert.That(a is null, Is.False);
-        }
     }
 }
