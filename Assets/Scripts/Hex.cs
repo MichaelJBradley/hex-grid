@@ -197,11 +197,12 @@ public class Hex : IEnumerable<int>
 
     public override int GetHashCode()
     {
-        return ;
+        return new Tuple<int,int>(Q,R).GetHashCode();
     }
 
     /// <summary>
-    /// Defines how two Hexes are equivalent. 
+    /// Defines how two Hexes are equivalent.
+    /// If both Hexes are null, then they are equivalent.
     /// </summary>
     /// <param name="a">The Hex to compare.</param>
     /// <param name="b">The Hex to compare.</param>
@@ -209,6 +210,14 @@ public class Hex : IEnumerable<int>
     /// <c>a.Q == b.Q</c> and <c>a.R == b.R</c> or <c>false</c> otherwise.</returns>
     public static bool operator ==(Hex a, Hex b)
     {
+        if (a == null && b == null)
+        {
+            return true;
+        } 
+        if (a == null || b == null)
+        {
+            return false;
+        }
         for (uint i = 0; i < NumSaved; i++)
         {
             if (a[i] != b[i])
