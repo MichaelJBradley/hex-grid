@@ -10,22 +10,12 @@ jobs:
       with:
         lfs: true
 
-    - name: Cache library files
-      uses: actions/cache@v2.1.1
-      with:
-        path: Library
-        key: Library-Hex-Grid-Tests
-        restore-keys: |
-          Library-Hex-Grid-
-          Library-
-
     - name: Unity - Test runner
       uses: webbertakken/unity-test-runner@v1.6
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with: 
         unityVersion: 2020.1.3f1
-        testMode: playmode
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v2
