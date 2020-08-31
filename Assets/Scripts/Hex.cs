@@ -197,7 +197,7 @@ public class Hex : IEnumerable<int>
 
     public override int GetHashCode()
     {
-        return q ^ r;
+        return ;
     }
 
     /// <summary>
