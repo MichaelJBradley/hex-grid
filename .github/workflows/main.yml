@@ -10,16 +10,12 @@ jobs:
       with:
         lfs: true
 
-    - name: Unity - Activate
-      uses: webbertakken/unity-activate@v1.2
-      with:
-        unityVersion: 2020.1.3f1
-
     - name: Unity - Test runner
       uses: webbertakken/unity-test-runner@v1.6
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with: 
+        projectPath: /
         unityVersion: 2020.1.3f1
 
     - name: Upload test artifacts
