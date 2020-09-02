@@ -1,10 +1,10 @@
 {
     "name": "Tests",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "HexAssembly",
-        "InvalidHexExceptionAssembly"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:f92c1ebeae7f54a9fa569258458aca3e",
+        "GUID:09bbe569886d2460d8af700253172281"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -13,9 +13,10 @@
     "precompiledReferences": [
         "nunit.framework.dll"
     ],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

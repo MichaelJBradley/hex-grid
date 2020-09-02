@@ -184,9 +184,25 @@ public class Hex : IEnumerable<int>
         return this + Directions[d];
     }
 
+    public override bool Equals(object obj)
+    {
+        if ((obj == null) || !GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+
+        Hex h = obj as Hex;
+        return this == h;
+    }
+
+    public override int GetHashCode()
+    {
+        return new Tuple<int,int>(Q,R).GetHashCode();
+    }
 
     /// <summary>
-    /// Defines how two Hexes are equivalent. 
+    /// Defines how two Hexes are equivalent.
+    /// If both Hexes are null, then they are equivalent.
     /// </summary>
     /// <param name="a">The Hex to compare.</param>
     /// <param name="b">The Hex to compare.</param>
@@ -194,6 +210,14 @@ public class Hex : IEnumerable<int>
     /// <c>a.Q == b.Q</c> and <c>a.R == b.R</c> or <c>false</c> otherwise.</returns>
     public static bool operator ==(Hex a, Hex b)
     {
+        if (!a && !b)
+        {
+            return true;
+        } 
+        if (!a || !b)
+        {
+            return false;
+        }
         for (uint i = 0; i < NumSaved; i++)
         {
             if (a[i] != b[i])
@@ -215,6 +239,16 @@ public class Hex : IEnumerable<int>
     public static bool operator !=(Hex a, Hex b)
     {
         return !(a == b);
+    }
+
+    /// <summary>
+    /// Determines whether the Hex is null.
+    /// </summary>
+    /// <param name="h">The Hex to test for nullity.</param>
+    /// <returns><c>true</c> if <c>h</c> is null or <c>false</c> otherwise.</returns>
+    public static bool operator !(Hex h)
+    {
+        return h is null;
     }
 
     /// <summary>

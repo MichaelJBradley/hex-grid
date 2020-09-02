@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
@@ -142,6 +139,33 @@ namespace Tests
         }
 
         [Test]
+        public void Operator_Equals_TrueForBothNull()
+        {
+            Hex a = null;
+            Hex b = null;
+            
+            Assert.That(a == b, Is.True);
+        }
+
+        [Test]
+        public void Operator_Equals_FalseForFirstHexNullAndSecondHexNonNull()
+        {
+            Hex a = null;
+            Hex b = new Hex(87, 2);
+            
+            Assert.That(a == b, Is.False);
+        }
+
+        [Test]
+        public void Operator_Equals_FalseForFirstHexNonNullAndSecondHexNull()
+        {
+            Hex a = new Hex(61, 48);
+            Hex b = null;
+            
+            Assert.That(a == b, Is.False);
+        }
+
+        [Test]
         public void Operator_NotEquals_TrueForDifferentHexes()
         {
             Hex a = new Hex(21, 39);
@@ -157,6 +181,22 @@ namespace Tests
             Hex b = new Hex(12, 90);
 
             Assert.That(a != b, Is.False);
+        }
+
+        [Test]
+        public void Operator_Not_TrueForNull()
+        {
+            Hex h = null;
+            
+            Assert.That(!h, Is.True);
+        }
+
+        [Test]
+        public void Operator_Not_FalseForNonNull()
+        {
+            Hex h = new Hex(1, 2);
+            
+            Assert.That(!h, Is.False);
         }
 
         [Test]
@@ -301,6 +341,41 @@ namespace Tests
             Hex a = new Hex(6, 7, -13);
             
             Assert.That(a.Neighbor(Direction.NegS), Is.EquivalentTo(new Hex(6, 8, -14)));
+        }
+
+        [Test]
+        public void Hex_DoesNotEqual_Null()
+        {
+            Hex h = new Hex();
+            
+            Assert.That(h.Equals(null), Is.False);
+        }
+
+        // This may be a silly test, but I want to make sure different types don't slip past.
+        [Test]
+        public void Hex_DoesNotEqual_List()
+        {
+            Hex h = new Hex();
+            
+            Assert.That(h.Equals(new List<string>()), Is.False);
+        }
+
+        [Test]
+        public void Hex_Equals_HexWithSameNumbers()
+        {
+            Hex a = new Hex(9, 1);
+            Hex b = new Hex(9, 1);
+            
+            Assert.That(a.Equals(b), Is.True);
+        }
+
+        [Test]
+        public void Hex_GetHashCode_IsUnique()
+        {
+            Hex a = new Hex(10, 43);
+            Hex b = new Hex(43, 10);
+            
+            Assert.That(a.GetHashCode(), Is.Not.EqualTo(b.GetHashCode()));
         }
     }
 }
