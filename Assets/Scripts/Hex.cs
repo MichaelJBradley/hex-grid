@@ -186,7 +186,7 @@ public class Hex : IEnumerable<int>
 
     public override bool Equals(object obj)
     {
-        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        if ((obj == null) || !GetType().Equals(obj.GetType()))
         {
             return false;
         }
