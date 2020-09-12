@@ -60,7 +60,7 @@ public class Hex : IEnumerable<int>
     /// saved in the Hex object, but rather calculated from q and r. Therefore
     /// it cannot be set.
     /// </summary>
-    public int S => -1 * q - r;
+    public int S => (-1 * q) - r;
 
     /// <summary>
     /// An indexer to get and set the components of the Hex. This uses the Q, R,
@@ -87,8 +87,8 @@ public class Hex : IEnumerable<int>
                     return S;
 
                 default:
-                    throw new IndexOutOfRangeException("The index (" + i + ") is out of range." +
-                        "it must be within the range [0, 2].");
+                    throw new IndexOutOfRangeException("The index (" + i + ") is out of range. It must be " +
+                                                       "within the range [0, 2].");
             }
         }
 
@@ -105,22 +105,21 @@ public class Hex : IEnumerable<int>
                     break;
                 
                 case 2:
-                    throw new IndexOutOfRangeException("The index (" + i + ") cannot be used to set the S " +
-                                                       "component. Valid indices are in the range [0, 1].");
+                    throw new ImmutableHexComponentException("The index (" + i + ") cannot be used to set " +
+                                                             "the S component. Valid indices are in the range [0, 1].");
 
                 default:
-                    throw new IndexOutOfRangeException("The index (" + i + ") is out of range. " +
-                                                       "It must be within the range [0, 1].");
+                    throw new IndexOutOfRangeException("The index (" + i + ") is out of range. It must be " +
+                                                       "within the range [0, 1].");
             }
         }
     }
+    
 
     /// <summary>
     /// Constructs a Hex in which both <c>q</c> and <c>r</c> are 0.
     /// </summary>
-    public Hex() : this(0, 0)
-    {
-    }
+    public Hex() : this(0, 0) { }
 
     /// <summary>
     /// Constructs a Hex in which both <c>q</c> and <c>r</c> are set explicitly.
@@ -150,6 +149,12 @@ public class Hex : IEnumerable<int>
         }
     }
 
+    /// <summary>
+    /// Constructs a Hex from a FloatHex. All decimal values from the float hex are truncated.
+    /// </summary>
+    /// <param name="h">The FloatHex from which to create the Hex.</param>
+    public Hex(FloatHex h) : this((int) h.Q, (int) h.R) { }
+
     
     /// <summary>
     /// Defines how the Hex is enumerated over.
@@ -170,6 +175,11 @@ public class Hex : IEnumerable<int>
 
 
     /// <summary>
+    /// Returns a Hex with the absolute value of each component.
+    /// </summary>
+    public Hex Abs => new Hex(Math.Abs(q), Math.Abs(r));
+    
+    /// <summary>
     /// Returns the length of the Hex from the origin.
     /// </summary>
     public int Length => Math.Max(Math.Abs(Q), Math.Max(Math.Abs(R), Math.Abs(S)));
@@ -183,7 +193,7 @@ public class Hex : IEnumerable<int>
     {
         return this + Directions[d];
     }
-
+    
     public override bool Equals(object obj)
     {
         if ((obj == null) || !GetType().Equals(obj.GetType()))
@@ -197,16 +207,16 @@ public class Hex : IEnumerable<int>
 
     public override int GetHashCode()
     {
-        return new Tuple<int,int>(Q,R).GetHashCode();
+        return new Tuple<int,int>(Q, R).GetHashCode();
     }
 
+
     /// <summary>
-    /// Defines how two Hexes are equivalent.
-    /// If both Hexes are null, then they are equivalent.
+    /// Determines whether two Hexes are equivalent. 
     /// </summary>
     /// <param name="a">The Hex to compare.</param>
     /// <param name="b">The Hex to compare.</param>
-    /// <returns><c>true</c> if each component is equal to the other. I.e.
+    /// <returns><c>true</c> if each component is equal to the other. That is,
     /// <c>a.Q == b.Q</c> and <c>a.R == b.R</c> or <c>false</c> otherwise.</returns>
     public static bool operator ==(Hex a, Hex b)
     {
@@ -217,7 +227,7 @@ public class Hex : IEnumerable<int>
         if (!a || !b)
         {
             return false;
-        }
+        } 
         for (uint i = 0; i < NumSaved; i++)
         {
             if (a[i] != b[i])
@@ -230,17 +240,17 @@ public class Hex : IEnumerable<int>
     }
 
     /// <summary>
-    /// Defines how two Hexes are not equivalent.
+    /// Determines whether two Hexes are not equivalent.
     /// </summary>
     /// <param name="a">The Hex to compare.</param>
     /// <param name="b">The Hex to compare.</param>
-    /// <returns><c>false</c> if each component is equal to the other. I.e.
+    /// <returns><c>false</c> if each component is equal to the other. That is,
     /// <c>a.Q == b.Q</c> and <c>a.R == b.R</c> or <c>true</c> otherwise.</returns>
     public static bool operator !=(Hex a, Hex b)
     {
         return !(a == b);
     }
-
+    
     /// <summary>
     /// Determines whether the Hex is null.
     /// </summary>
