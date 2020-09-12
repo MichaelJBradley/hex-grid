@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class InvalidHexException : Exception
+public class InvalidHexException : HexException
 {
     public InvalidHexException() { }
 
