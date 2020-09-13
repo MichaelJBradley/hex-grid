@@ -6,5 +6,5 @@ public class HexException : Exception
 
     public HexException(string message) : base(message) { }
 
-	public HexException(string message, Exception inner) : base(message, inner) { }
+    public HexException(string message, Exception inner) : base(message, inner) { }
 }
