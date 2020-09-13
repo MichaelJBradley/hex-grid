@@ -21,12 +21,12 @@ public class Hex : IEnumerable<int>
     /// </summary>
     public static readonly Dictionary<Direction, Hex> Directions = new Dictionary<Direction, Hex>
     {
+        {Direction.PosQ, new Hex(1, 0, -1)},
+        {Direction.PosR, new Hex(-1, 1, 0)},
         {Direction.PosS, new Hex(0, -1, 1)},
         {Direction.NegQ, new Hex(-1, 0, 1)},
-        {Direction.PosR, new Hex(-1, 1, 0)},
+        {Direction.NegR, new Hex(1, -1, 0)},
         {Direction.NegS, new Hex(0, 1, -1)},
-        {Direction.PosQ, new Hex(1, 0, -1)},
-        {Direction.NegR, new Hex(1, -1, 0)}
     };
     
     
@@ -148,12 +148,6 @@ public class Hex : IEnumerable<int>
             throw new InvalidHexException("The coordinates do not add up to 0.");
         }
     }
-
-    /// <summary>
-    /// Constructs a Hex from a FloatHex. All decimal values from the float hex are truncated.
-    /// </summary>
-    /// <param name="h">The FloatHex from which to create the Hex.</param>
-    public Hex(FloatHex h) : this((int) h.Q, (int) h.R) { }
 
     
     /// <summary>

@@ -121,16 +121,6 @@ namespace Tests
         }
 
         [Test]
-        public void FloatHexToHexConstructor_TruncatesComponents()
-        {
-            FloatHex a = new FloatHex(1.2f, 2.3f);
-            Hex b = new Hex(a);
-            
-            Assert.That(b.Q, Is.EqualTo(1));
-            Assert.That(b.R, Is.EqualTo(2));
-        }
-
-        [Test]
         public void Operator_Equals_TrueForMatchingHexes()
         {
             Hex a = new Hex(1, 3);
