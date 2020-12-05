@@ -77,7 +77,7 @@ namespace Tests
         {
             Hex h = new Hex(2, 4);
 
-            Assert.Throws<IndexOutOfRangeException>(() => { int a = h[3]; });
+            Assert.That(() => h[3], Throws.TypeOf<IndexOutOfRangeException>());
         }
 
         [Test]
@@ -102,8 +102,8 @@ namespace Tests
         public void Index_2_CannotSetSValue()
         {
             Hex h = new Hex();
-            
-            Assert.Throws<IndexOutOfRangeException>(() => { h[2] = 5; });
+
+            Assert.That(() => h[2] = 5, Throws.TypeOf<ImmutableHexComponentException>());
         }
 
         [Test]
@@ -111,13 +111,13 @@ namespace Tests
         {
             Hex h = new Hex();
 
-            Assert.Throws<IndexOutOfRangeException>(() => { h[3] = 12; });
+            Assert.That(() => h[3] = 12, Throws.TypeOf<IndexOutOfRangeException>());
         }
 
         [Test]
         public void ConstructorWithInvalidS_IsInvalid()
         {
-            Assert.Throws<InvalidHexException>(() => { Hex h = new Hex(1, 2, 3); });
+            Assert.That(() => new Hex(1, 2, 3), Throws.TypeOf<InvalidHexException>());
         }
 
         [Test]
@@ -238,7 +238,7 @@ namespace Tests
         [Test]
         public void Operator_Division_DivideByZeroThrowsException()
         {
-            Assert.Throws<DivideByZeroException>(() => { Hex h = new Hex(12, 64) / 0; });
+            Assert.That(() => new Hex(12, 64) / 0, Throws.TypeOf<DivideByZeroException>());
         }
 
         [Test]
