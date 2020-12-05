@@ -168,11 +168,6 @@ public class FloatHex : IEnumerable<float>
 
     
     /// <summary>
-    /// Returns a FloatHex with the absolute value of each component.
-    /// </summary>
-    public FloatHex Abs => new FloatHex(Math.Abs(Q), Math.Abs(R));
-
-    /// <summary>
     /// Returns the length of the FloatHex from the origin.
     /// </summary>
     public float Length => Math.Max(Math.Abs(Q), Math.Max(Math.Abs(R), Math.Abs(S)));

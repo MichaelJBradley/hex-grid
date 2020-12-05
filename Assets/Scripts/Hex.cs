@@ -167,11 +167,6 @@ public class Hex : IEnumerable<int>
         return GetEnumerator();
     }
 
-
-    /// <summary>
-    /// Returns a Hex with the absolute value of each component.
-    /// </summary>
-    public Hex Abs => new Hex(Math.Abs(q), Math.Abs(r));
     
     /// <summary>
     /// Returns the length of the Hex from the origin.

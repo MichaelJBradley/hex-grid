@@ -298,6 +298,14 @@ namespace Tests
         }
 
         [Test]
+        public void Length_WithNegativeSComponentMax_IsDeterminedByS()
+        {
+            FloatHex h = new FloatHex(4.97f, 1.55f, -6.52f);
+
+            Assert.That(h.Length, Is.EqualTo(6.52).Within(.0001f));
+        }
+
+        [Test]
         public void Round_WithQDiffLargest_CalculatesCorrectly()
         {
             // Diffs
@@ -331,22 +339,6 @@ namespace Tests
             FloatHex h = new FloatHex(-3.31f, -2.21f, 5.52f);
 
             Assert.That(h.Round(), Is.EqualTo(new Hex(-3, -2, 5)));
-        }
-
-        [Test]
-        public void Abs_WithPositiveComponents_ReturnsSameComponentValues()
-        {
-            FloatHex h = new FloatHex(16.90f, 78.1246f);
-
-            Assert.That(h.Abs, Is.EqualTo(new FloatHex(16.90f, 78.1246f)));
-        }
-
-        [Test]
-        public void Abs_WithNegativeComponents_ReturnsPositiveComponentValues()
-        {
-            FloatHex h = new FloatHex(-42.31f, -89.64f);
-
-            Assert.That(h.Abs, Is.EqualTo(new FloatHex(42.31f, 89.64f)));
         }
 
         [Test]

@@ -278,24 +278,6 @@ namespace Tests
         }
 
         [Test]
-        public void Abs_CalculatesComponentsCorrectly_WithPositiveValues()
-        {
-            Hex h = new Hex(1, 2);
-            Hex expected = new Hex(1, 2);
-
-            Assert.That(h.Abs, Is.EqualTo(expected));
-        }
-
-        [Test]
-        public void Abs_CalculatesComponentsCorrectly_WithNegativeValues()
-        {
-            Hex h = new Hex(-6, -4);
-            Hex expected = new Hex(6, 4);
-
-            Assert.That(h.Abs, Is.EqualTo(expected));
-        }
-
-        [Test]
         public void DistanceIsCalculatedCorrectly()
         {
             Hex a = new Hex(1, 2);
