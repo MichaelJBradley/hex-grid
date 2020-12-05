@@ -53,14 +53,16 @@ public class FloatHex : IEnumerable<float>
     public float S => (-1 * q) - r;
 
     /// <summary>
-    /// An indexer to get and set the components of the FloatHex. This uses the Q, R,
-    /// and S properties, so only q and r can b set. Components are stored in
-    /// the order [q, r, s].
+    /// An indexer to get and set the components of the FloatHex. This uses the
+    /// Q, R, and S properties, so only q and r can b set. Components are stored
+    /// in the order [q, r, s].
     /// </summary>
     /// <param name="i">The index of the component to get. It must be in the
     /// range [0, 2].</param>
     /// <exception cref="IndexOutOfRangeException">The index was outside the
-    /// range [0, 2] or attempting to set at index 2.</exception>
+    /// range [0, 2].</exception>
+    /// <exception cref="ImmutableHexComponentException">Attempting to set at
+    /// index 2.</exception>
     public float this[uint i]
     {
         get
