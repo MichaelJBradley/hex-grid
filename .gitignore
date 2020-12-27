@@ -63,3 +63,7 @@ crashlytics-build.properties
 
 # JetBrains
 .idea/
+
+# Test Scenes
+/[Aa]ssets/[Tt]estScenes/
+/[Aa]ssets/[Tt]estScenes.meta
