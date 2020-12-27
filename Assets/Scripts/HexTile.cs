@@ -33,13 +33,8 @@ public class HexTile : MonoBehaviour
         }
 
         // If the MeshCollider exists, assign the generated mesh.
-        if (!meshCollider)
+        if (meshCollider) 
         {
-            Debug.Log("HexTile at position " + pos + " has no MeshCollider.");
-        }
-        else
-        {
-            Debug.Log("MeshCollider found, adding Mesh.");
             meshCollider.sharedMesh = mesh;
         }
     }
