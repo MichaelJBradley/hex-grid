@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
+[Serializable]
 public class Hex : IEnumerable<int>
 {
     /// <summary>
@@ -30,7 +32,9 @@ public class Hex : IEnumerable<int>
     };
     
     
+    [SerializeField]
     private int q;
+    [SerializeField]
     private int r;
 
     /// <summary>
@@ -199,6 +203,16 @@ public class Hex : IEnumerable<int>
     public override int GetHashCode()
     {
         return new Tuple<int,int>(Q, R).GetHashCode();
+    }
+
+    /// <summary>
+    /// Converts Hex to String in a human readable format.
+    /// </summary>
+    /// <returns>A representation of the Hex as its coordinates in the form
+    /// "(Q, R, S)".</returns>
+    public override string ToString()
+    {
+        return "(" + Q + ", " + R + ", " + S + ")";
     }
 
 

@@ -377,5 +377,14 @@ namespace Tests
             
             Assert.That(a.GetHashCode(), Is.Not.EqualTo(b.GetHashCode()));
         }
+
+        [Test]
+        public void ToString_HasValidCoordinates_ReturnsCorrectString()
+        {
+            Hex hex = new Hex(12, 58, -70);
+            String expected = "(12, 58, -70)";
+
+            Assert.That(hex.ToString(), Is.EqualTo(expected));
+        }
     }
 }

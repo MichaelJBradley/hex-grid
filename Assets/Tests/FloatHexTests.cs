@@ -459,5 +459,14 @@ namespace Tests
 
             Assert.That(a.GetHashCode(), Is.Not.EqualTo(b.GetHashCode()));
         }
+
+        [Test]
+        public void ToString_HasValidCoordinates_ReturnsCorrectString()
+        {
+            FloatHex hex = new FloatHex(54.23f, -9.22f, -45.01f);
+            String expected = "(54.23, -9.22, -45.01)";
+
+            Assert.That(hex.ToString(), Is.EqualTo(expected));
+        }
     }
 }
