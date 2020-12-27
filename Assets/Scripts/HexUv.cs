@@ -36,7 +36,7 @@ public class HexUv
     };
 
     /// <summary>
-    /// A utility method to ease the retrieval of UV mappings. All default
+    /// A utility method to ease the retrieval of UV mappings. All HexUvTypes
     /// mappings should be present in this function.
     /// </summary>
     /// <param name="uvType">The UV mapping to get.</param>

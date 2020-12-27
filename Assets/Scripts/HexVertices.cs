@@ -12,8 +12,8 @@ public enum HexTypes
 }
 
 /// <summary>
-/// HexVertices defines arrays of Vector3s representing the vertices of Hexes.
-/// All vertices arrays should start with the center vertex and be 0 offset.
+/// HexVertices defines Vector3[]'s representing the vertices of Hexes.
+/// All vertices arrays start with the center vertex and have 0 offset.
 /// </summary>
 public class HexVertices
 {

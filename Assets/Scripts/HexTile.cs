@@ -27,7 +27,7 @@ public class HexTile : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates a new Mesh with the this HexTile's vertices, triangles and UV
+    /// Creates a new Mesh with the this HexTile's vertices, triangles, and UV
     /// mapping.
     /// </summary>
     /// <returns>The newly created Mesh.</returns>
