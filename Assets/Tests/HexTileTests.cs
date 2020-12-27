@@ -1,27 +1,101 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections;
 using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class HexTileTests
     {
+        private readonly int[] flatTopTriangles = new int[] {0, 2, 1, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 6, 5, 0, 1, 6};
         [Test]
         public void HexTile_WithMeshFilterAndVerticesAndTriangles_GeneratesMesh()
         {
-            GameObject g = new GameObject();
-            HexTile h = g.AddComponent<HexTile>();
+            GameObject h = new GameObject();
+            HexTile ht = h.AddComponent<HexTile>();
             // Set vertices for a Hex at (0, 0)
-            h.vertices = HexVertices.FlatTop;
+            ht.vertices = HexVertices.FlatTop;
             // Set triangles. Unity calculates triangles clockwise.
-            h.triangles = new int[] {0, 2, 1, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 6, 5, 0, 1, 6};
+            ht.triangles = flatTopTriangles;
 
-            Mesh m = h.GenerateMesh();
+            Mesh m = ht.GenerateMesh();
 
             Assert.That(m, Is.Not.Null);
-            Assert.That(m.vertices, Is.EqualTo(h.vertices));
-            Assert.That(m.triangles, Is.EqualTo(h.triangles));
+            Assert.That(m.vertices, Is.EqualTo(ht.vertices));
+            Assert.That(m.triangles, Is.EqualTo(ht.triangles));
             Assert.That(m.uv, Is.EqualTo(HexUv.SquareOutline));
+        }
+        
+        [UnityTest]
+        public IEnumerator HexTile_WithMeshCollider_BelowFallingBall_Collides()
+        {
+            // Create the ball that will collide with the Hex.
+            // Put it above the Hex, so it can fall onto it.
+            GameObject ball = new GameObject();
+            ball.transform.position = new Vector3(0, 4, 0);
+            ball.AddComponent<SphereCollider>();
+            Ball ballScript = ball.AddComponent<Ball>();
+            Rigidbody ballRb = ball.AddComponent<Rigidbody>();
+            ballRb.useGravity = true;
+            
+            // Create the Hex
+            GameObject h = new GameObject();
+            h.AddComponent<MeshCollider>();
+            HexTile ht = h.AddComponent<HexTile>();
+            ht.pos = new Hex(0, 0);
+            ht.vertices = HexVertices.FlatTop;
+            ht.triangles = flatTopTriangles;
+            
+            yield return new WaitForSeconds(1f);
+
+            MeshCollider mc = h.GetComponent<MeshCollider>();
+            Assert.That(mc, Is.Not.Null);
+            Assert.That(ballScript.collision, Is.True);
+        }
+    
+        [UnityTest]
+        public IEnumerator HexTile_WithMeshCollider_AboveFallingBall_DoesNotCollide() {
+                // Create the ball that will collide with the Hex.
+                // Put it above the Hex, so it can fall onto it.
+                GameObject ball = new GameObject();
+                ball.transform.position = new Vector3(0, -4, 0);
+                ball.AddComponent<SphereCollider>();
+                Ball ballScript = ball.AddComponent<Ball>();
+                Rigidbody ballRb = ball.AddComponent<Rigidbody>();
+                ballRb.useGravity = true;
+                
+                // Create the Hex
+                GameObject h = new GameObject();
+                h.AddComponent<MeshCollider>();
+                HexTile ht = h.AddComponent<HexTile>();
+                ht.pos = new Hex(0, 0);
+                ht.vertices = HexVertices.FlatTop;
+                ht.triangles = flatTopTriangles;
+                
+                yield return new WaitForSeconds(1f);
+
+                MeshCollider mc = h.GetComponent<MeshCollider>();
+                Assert.That(mc, Is.Not.Null);
+                Assert.That(ballScript.collision, Is.False);
+        }
+    }
+
+    /// <summary>
+    /// Ball is a test MonoBehavior used to detect collisions.
+    /// </summary>
+    class Ball : MonoBehaviour
+    {
+        public bool collision;
+
+        void OnCollisionEnter(Collision col)
+        {
+            collision = true;
+        }
+
+        void OnCollisionExit(Collision col)
+        {
+            collision = false;
         }
     }
 }

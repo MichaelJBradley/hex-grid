@@ -12,7 +12,16 @@ public class HexTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Check whether a MeshFilter or MeshCollider exist on the Hex. If at least one of them does, then generate the
+        // mesh.
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+        MeshCollider meshCollider = gameObject.GetComponent<MeshCollider>();
+        if (meshFilter || meshCollider)
+        {
+            mesh = GenerateMesh();
+        }
+        
+        // If the MeshFilter exists, assign the generated mesh.
         if (!meshFilter)
         {
             Debug.LogWarning("HexTile at position " + pos + " has no MeshFilter. It will not be visible in " +
@@ -20,9 +29,18 @@ public class HexTile : MonoBehaviour
         }
         else
         {
-            Debug.Log("Mesh filter found. Generating mesh.");
-            mesh = GenerateMesh();
             meshFilter.mesh = mesh;
+        }
+
+        // If the MeshCollider exists, assign the generated mesh.
+        if (!meshCollider)
+        {
+            Debug.Log("HexTile at position " + pos + " has no MeshCollider.");
+        }
+        else
+        {
+            Debug.Log("MeshCollider found, adding Mesh.");
+            meshCollider.sharedMesh = mesh;
         }
     }
 
