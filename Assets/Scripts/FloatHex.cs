@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[Serializable]
 public class FloatHex : IEnumerable<float>
 {
     /// <summary>
@@ -20,7 +21,9 @@ public class FloatHex : IEnumerable<float>
     public const float Delta = .0001f;
     
     
+    [UnityEngine.SerializeField]
     private float q;
+    [UnityEngine.SerializeField]
     private float r;
 
     /// <summary>
@@ -246,6 +249,16 @@ public class FloatHex : IEnumerable<float>
     public override int GetHashCode()
     {
         return new Tuple<float,float>(Q, R).GetHashCode();
+    }
+    
+    /// <summary>
+    /// Converts FloatHex to String in a human readable format.
+    /// </summary>
+    /// <returns>A representation of the FloatHex as its coordinates in the form
+    /// "(Q, R, S)".</returns>
+    public override string ToString()
+    {
+        return "(" + Q + ", " + R + ", " + S + ")";
     }
 
 
