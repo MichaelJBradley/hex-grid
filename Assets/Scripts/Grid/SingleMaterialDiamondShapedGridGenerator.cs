@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Grid
 {
-    public class HexagonalGridGenerator : MonoBehaviour, IGridGenerator
+    public class SingleMaterialDiamondShapedGridGenerator : MonoBehaviour, IGridGenerator
     {
         public Hex min;
         public Hex max;
