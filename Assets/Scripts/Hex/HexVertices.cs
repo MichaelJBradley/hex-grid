@@ -13,10 +13,33 @@ public enum HexTypes
     PointyTop
 }
 
-public struct Orientation
+/// <summary>
+/// Holds matrices and angle needed to convert Hex to world coordinates and vice
+/// versa.
+/// </summary>
+public readonly struct Orientation
 {
+    /// <summary>
+    /// The matrix to convert from Hex coordinates to world coordinates.
+    /// It has a length of 2 where index 0 is used to calculate x and 1 to
+    /// calculate z.
+    /// The choice to use FloatHex[] is fairly arbitrary. There may be a better
+    /// choice, but it made sense to multiply the Q's and R's of the Hexes
+    /// together.
+    /// </summary>
     public readonly FloatHex[] ToWorldMatrix;
+    /// <summary>
+    /// The matrix to convert from world coordinates to Hex coordinates.
+    /// It has a length of 2 where index 0 is used to calculate Q and 1 to
+    /// calculate R.
+    /// The choice to use Vector3[] is fairly arbitrary. There may be a better
+    /// choice, but it made sense to multiply the x's and z's of the Vector3s
+    /// together.
+    /// </summary>
     public readonly Vector3[] ToHexMatrix;
+    /// <summary>
+    /// The angle of the first corner of the Hex in radians.
+    /// </summary>
     public readonly float StartAngle;
 
     public Orientation(FloatHex[] toWorldMatrix, Vector3[] toHexMatrix, float startAngle)
@@ -28,8 +51,8 @@ public struct Orientation
 }
 
 /// <summary>
-/// HexVertices defines Vector3[]'s representing the vertices of Hexes.
-/// All vertices arrays start with the center vertex and have 0 offset.
+/// Defines data structures and methods to convert Hex to world coordinates and
+/// vice versa.
 /// </summary>
 public static class HexVertices
 {
@@ -82,7 +105,7 @@ public static class HexVertices
     };
     
     /// <summary>
-    /// Defines the matrices used to convert a flat topped hexagon's vertices
+    /// Defines the matrices used to convert a flat topped Hex's vertices
     /// from Hex coordinates to world and vice versa.
     /// Start angle is 0, because the first vertex (excluding the center) is
     /// (1, 0, 0) which is 0 degrees on the unit circle.
@@ -100,7 +123,7 @@ public static class HexVertices
     );
     
     /// <summary>
-    /// Defines the matrices used to convert a pointy topped hexagon's vertices
+    /// Defines the matrices used to convert a pointy topped Hex's vertices
     /// from Hex coordinates to world and vice versa.
     /// Start angle is .5 rad (60 deg) because the first vertex (excluding the
     /// center) is (sqrt(3) / 2, 0, 0.5) which is 60 degrees on the unit circle.
@@ -163,20 +186,20 @@ public static class HexVertices
     /// <param name="orientation">The type of Hex to calculate. This determines
     /// at which angle teh HexTiles will be rotated.</param>
     /// <param name="index">The index of the corner to calculate. For example,
-    /// on a flat topped hexagon, index 0 represents the far right corner and
-    /// 4 represents the bottom left corner.</param>
+    /// on a flat topped Hex, index 0 represents the far right corner and 4
+    /// represents the bottom left corner.</param>
     /// <returns>A Vector3 representing the corner offset from the center of the
-    /// hexagon.</returns>
+    /// Hex.</returns>
     public static Vector3 CalcCornerOffset(Orientation orientation, uint index)
     {
-        // Calculate on which angle of the unit circle this corner of the hexagon lies.
+        // Calculate on which angle of the unit circle this corner of the Hex lies.
         // This implementation is from https://www.redblobgames.com/grids/hexagons/implementation.html#hex-geometry.
         float angle = (2.0f * Mathf.PI * (orientation.StartAngle + index)) / 6;
         return new Vector3(Mathf.Cos(angle), 0.0f, Mathf.Sin(angle));
     }
 
     /// <summary>
-    /// Calculates the hexagon's center in world coordinate from a Hex given the
+    /// Calculates the Hex's center in world coordinate from a Hex given the
     /// Orientation.
     /// The resulting world coordinate is always at y = 0.
     /// </summary>
