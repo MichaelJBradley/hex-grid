@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,6 +49,8 @@ namespace Grid
                     hexTile.pos = pos;
                     if (useMeshes || useColliders)
                     {
+                        // Because the vertices are being calculated, either flat or pointy topped Hex types can be
+                        // used.
                         hexTile.vertices = HexVertices.GetVertices(pos, hexType);
                         // GetVertices always puts the center vertex at element 0.
                         hexTile.center = hexTile.vertices[0];

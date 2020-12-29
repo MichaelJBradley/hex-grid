@@ -5,11 +5,22 @@ namespace Grid
 {
     public class HexGrid : MonoBehaviour
     {
+        /// <summary>
+        /// Holds all HexTiles with key as the HexTile's Hex position.
+        /// Should be filled in by an IGridGenerator's Generate function.
+        /// </summary>
         public Dictionary<Hex, HexTile> Hexes;
+
+        private bool loaded;
+        /// <summary>
+        /// Flag to identify whether Hex grid has been generated.
+        /// </summary>
+        public bool Loaded => loaded;
 
         // Start is called before the first frame update
         void Start()
         {
+            loaded = false;
             Hexes = new Dictionary<Hex, HexTile>();
             IGridGenerator gridGenerator = GetComponent<IGridGenerator>();
             if (gridGenerator == null)
@@ -20,6 +31,7 @@ namespace Grid
             else
             {
                 gridGenerator.Generate(Hexes);
+                loaded = true;
             }
         }
     }
