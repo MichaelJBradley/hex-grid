@@ -30,6 +30,23 @@ namespace Tests
             // must be multiplied by 2 for both sides of the grid.
             Assert.That(grid.Hexes.Count, Is.EqualTo(331));
         }
+
+        [UnityTest]
+        public IEnumerator HexGrid_WithGenerateOnStartIsFalse_DoesNotGenerate() 
+        {
+            GameObject g = new GameObject();
+            TestHexagonalGridGenerator generator = g.AddComponent<TestHexagonalGridGenerator>();
+            generator.gridRadius = 10;
+            HexGrid grid = g.AddComponent<HexGrid>();
+            grid.generateOnStart = false;
+
+            Assert.That(grid.Loaded, Is.False);
+
+            yield return new WaitForSeconds(2.0f);
+
+            Assert.That(grid.Loaded, Is.False);
+            Assert.That(grid.Hexes.Count, Is.EqualTo(0));
+        }
     }
 
     class TestHexagonalGridGenerator : MonoBehaviour, IGridGenerator

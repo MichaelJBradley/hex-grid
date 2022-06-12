@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Grid;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PrefabHexagonalShapedGenerator : MonoBehaviour, IGridGenerator
 {
@@ -22,7 +20,7 @@ public class PrefabHexagonalShapedGenerator : MonoBehaviour, IGridGenerator
         // Save the prefab's position so it can be restored later.
         Vector3 prefabPos = hexPrefab.transform.position;
 
-        // Iterate diagonally across the q-axis of the hexagon.
+        // Iterate across the q-axis of the hexagon.
         for (int q = -gridRadius; q <= gridRadius; q++)
         {
             // Define the width of the r-axis based on q.

@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class HexVerticesTests
     {
-        // A Test behaves as an ordinary method
         [Test]
         public void HexToWorld_WithFlatToppedZeroHex_CalculatesZeroVector3()
         {
@@ -91,12 +87,12 @@ namespace Tests
             // flat topped to-world matrix.
             // [ 5, -3 ] * [ 2 / 3, -1 / 3      ]
             //             [ 0,     sqrt(3) / 3 ]
-            FloatHex expected = new FloatHex(3.3333f, 3.3987f);
+            FloatHex expected = new FloatHex(3.3333f, -3.3987f);
 
             FloatHex actual = HexVertices.WorldToHex(HexVertices.FlatTopOrientation, v);
 
             Assert.That(actual.Q, Is.EqualTo(expected.Q).Within(0.001f));
-            Assert.That(actual.Q, Is.EqualTo(expected.Q).Within(0.001f));
+            Assert.That(actual.R, Is.EqualTo(expected.R).Within(0.001f));
         }
 
         [Test]
@@ -112,7 +108,7 @@ namespace Tests
             FloatHex actual = HexVertices.WorldToHex(HexVertices.PointyTopOrientation, v);
 
             Assert.That(actual.Q, Is.EqualTo(expected.Q).Within(0.001f));
-            Assert.That(actual.Q, Is.EqualTo(expected.Q).Within(0.001f));
+            Assert.That(actual.R, Is.EqualTo(expected.R).Within(0.001f));
         }
 
         [Test]

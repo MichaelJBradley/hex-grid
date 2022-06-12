@@ -11,6 +11,11 @@ namespace Grid
         /// </summary>
         public Dictionary<Hex, HexTile> Hexes;
 
+        /// <summary>
+        /// Determines whether the HexGrid will generate at the start of the scene.
+        /// </summary>
+        public bool generateOnStart = true;
+
         private bool loaded;
         /// <summary>
         /// Flag to identify whether Hex grid has been generated.
@@ -22,13 +27,21 @@ namespace Grid
         {
             loaded = false;
             Hexes = new Dictionary<Hex, HexTile>();
+            if (generateOnStart)
+            {
+                GenerateGrid();
+            }
+        }
+
+        public void GenerateGrid() {
+            // Lazy load in case the IGridGenerator will be added later.
             IGridGenerator gridGenerator = GetComponent<IGridGenerator>();
             if (gridGenerator == null)
             {
                 Debug.LogWarning("No script that implements IGridGenerator exists on " + name + ". No" +
                                  " HexTiles will be generated.");
             }
-            else
+            else 
             {
                 gridGenerator.Generate(Hexes);
                 loaded = true;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Grid;
 
 public class RandomSelect : MonoBehaviour
@@ -43,6 +41,11 @@ public class RandomSelect : MonoBehaviour
         currentTime += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Selects a random HexTile from the HexGrid, and sets it to a random
+    /// color. On the next iteration it returns the previously selected HexTile
+    /// to its original color.
+    /// </summary>
     void Select()
     {
         GetHexTileMaterial(current).color = previousColor;
@@ -57,6 +60,12 @@ public class RandomSelect : MonoBehaviour
         selectedMaterial.color = new Color(Random.value, Random.value, Random.value);
     }
 
+    /// <summary>
+    /// Gets the Material from the HexTile at the specified position.
+    /// </summary>
+    /// <param name="pos">The position of the tile from which to to retrieve the
+    /// Material.</param>
+    /// <returns>A reference to the HexTile's Material.</returns>
     Material GetHexTileMaterial(Hex pos)
     {
         HexTile selected = grid.Hexes[pos];

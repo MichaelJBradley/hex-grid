@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using UnityEngine;
-
-/// <summary>
-/// A list of Hex types supported by this package.
-/// </summary>
-public enum HexTypes
-{
-    FlatTop,
-    PointyTop
-}
 
 /// <summary>
 /// Holds matrices and angle needed to convert Hex to world coordinates and vice
@@ -107,8 +95,8 @@ public static class HexVertices
     /// <summary>
     /// Defines the matrices used to convert a flat topped Hex's vertices
     /// from Hex coordinates to world and vice versa.
-    /// Start angle is 0, because the first vertex (excluding the center) is
-    /// (1, 0, 0) which is 0 degrees on the unit circle.
+    /// Start angle is 0, because the first corner is at (1, 0, 0), which is 0
+    /// degrees on the unit sphere.
     /// </summary>
     public static readonly Orientation FlatTopOrientation = new Orientation(
         new FloatHex[]{
@@ -125,8 +113,8 @@ public static class HexVertices
     /// <summary>
     /// Defines the matrices used to convert a pointy topped Hex's vertices
     /// from Hex coordinates to world and vice versa.
-    /// Start angle is .5 rad (60 deg) because the first vertex (excluding the
-    /// center) is (sqrt(3) / 2, 0, 0.5) which is 60 degrees on the unit circle.
+    /// Start angle is .5 rad (60 deg) because the first corner is at
+    /// (sqrt(3) / 2, 0, 0.5), which is 60 degrees on the unit sphere.
     /// </summary>
     public static readonly Orientation PointyTopOrientation = new Orientation(
         new FloatHex[] {
@@ -148,8 +136,8 @@ public static class HexVertices
     /// <param name="pos">The Hex to calculate.</param>
     /// <param name="hexType">The type of Hex to calculate. This determines
     /// at which angle the HexTiles will rotated.</param>
-    /// <returns>A Vector3[] of length NumVertices containing the vertices
-    /// required to draw the HexTile.</returns>
+    /// <returns>A Vector3[] of length <c>NumVertices</c> containing the
+    /// vertices required to draw the HexTile.</returns>
     /// <exception cref="InvalidEnumArgumentException">Attempting to use an
     /// unsupported Hex type.</exception>
     public static Vector3[] GetVertices(Hex pos, HexTypes hexType)
@@ -171,7 +159,7 @@ public static class HexVertices
         vertices[0] = HexToWorld(orientation, pos);
         for (uint i = 1; i < vertices.Length; i++)
         {
-            // CalcCornerOffset is 0 indexed, so subtract one from the index.
+            // The first corner is 0 indexed, so subtract one from the index.
             vertices[i] = vertices[0] + CalcCornerOffset(orientation, i - 1);
         }
 
@@ -181,10 +169,10 @@ public static class HexVertices
     /// <summary>
     /// Calculate the corner offset given the index of a corner.
     /// Corners are 0 indexed, start at Orientation.StartAngle, and go
-    /// counterclockwise.
+    /// counterclockwise, increasing by .5 rad each time index increases by 1.
     /// </summary>
     /// <param name="orientation">The type of Hex to calculate. This determines
-    /// at which angle teh HexTiles will be rotated.</param>
+    /// at which angle the HexTiles will be rotated.</param>
     /// <param name="index">The index of the corner to calculate. For example,
     /// on a flat topped Hex, index 0 represents the far right corner and 4
     /// represents the bottom left corner.</param>
@@ -193,13 +181,12 @@ public static class HexVertices
     public static Vector3 CalcCornerOffset(Orientation orientation, uint index)
     {
         // Calculate on which angle of the unit circle this corner of the Hex lies.
-        // This implementation is from https://www.redblobgames.com/grids/hexagons/implementation.html#hex-geometry.
         float angle = (2.0f * Mathf.PI * (orientation.StartAngle + index)) / 6;
         return new Vector3(Mathf.Cos(angle), 0.0f, Mathf.Sin(angle));
     }
 
     /// <summary>
-    /// Calculates the Hex's center in world coordinate from a Hex given the
+    /// Calculates the Hex's center in world coordinates from a Hex given the
     /// Orientation.
     /// The resulting world coordinate is always at y = 0.
     /// </summary>
@@ -234,6 +221,6 @@ public static class HexVertices
     {
         return new FloatHex(
             (orientation.ToHexMatrix[0].x * pos.x) + (orientation.ToHexMatrix[0].z * pos.z),
-            (orientation.ToHexMatrix[1].x * pos.x) + (orientation.ToHexMatrix[0].z * pos.z));
+            (orientation.ToHexMatrix[1].x * pos.x) + (orientation.ToHexMatrix[1].z * pos.z));
     }
 }
