@@ -8,6 +8,8 @@ public class HexTile : MonoBehaviour
     public Vector3[] vertices;
     public int[] triangles;
     public Mesh mesh;
+
+    public Vector3 center;
     
     // Start is called before the first frame update
     void Start()

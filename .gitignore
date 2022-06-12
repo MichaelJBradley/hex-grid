@@ -69,3 +69,5 @@ crashlytics-build.properties
 # Test Scenes
 /[Aa]ssets/[Tt]estScenes/
 /[Aa]ssets/[Tt]estScenes.meta
+/[Aa]ssets/[Tt]estScripts/
+/[Aa]ssets/[Tt]estScripts.meta
