@@ -10,14 +10,6 @@ jobs:
       with:
         lfs: true
 
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: Library
-        key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-        restore-keys: |
-          Library-
-
     - name: Unity - Test runner
       uses: game-ci/unity-test-runner@v2
       env:
@@ -26,6 +18,7 @@ jobs:
         projectPath: ./
         githubToken: ${{ secrets.GITHUB_TOKEN }}
         unityVersion: 2021.3.2f1
+        packageMode: true
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v2
