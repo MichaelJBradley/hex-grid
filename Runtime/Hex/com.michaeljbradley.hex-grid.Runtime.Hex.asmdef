@@ -1,0 +1,16 @@
+{
+    "name": "com.michaeljbradley.hex-grid.Runtime.Hex",
+    "rootNamespace": "",
+    "references": [
+        "GUID:09bbe569886d2460d8af700253172281"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
