@@ -25,6 +25,7 @@ jobs:
       with: 
         projectPath: .
         githubToken: ${{ secrets.GITHUB_TOKEN }}
+        unityVersion: 2021.3
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v2
