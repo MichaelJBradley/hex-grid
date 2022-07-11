@@ -1,0 +1,28 @@
+{
+    "name": "com.michaeljbradley",
+    "version": "0.1.0",
+    "description": "A package to implement hexagonal grids in Unity projects.",
+    "displayName": "Hex Grid",
+    "unity": "2021.3",
+    "author": {
+        "name": "Michael J Bradley",
+        "url": "https://github.com/MichaelJBradley"
+    },
+    "changelog": "https://github.com/MichaelJBradley/hex-grid/blob/master/CHANGELOG.md",
+    "documentationUrl": "https://github.com/MichaelJBradley/hex-grid/blob/master/README.md",
+    "keywords": ["hex", "hexagonal", "hexagon", "generator", "map", "grid"],
+    "license": "MIT",
+    "licenseUrl": "https://github.com/MichaelJBradley/hex-grid/blob/master/LICENSE.md",
+    "samples": [
+        {
+            "displayName": "Pistons on hexes",
+            "description": "An example of hexagonal grid generation using a HexTile prefab.",
+            "path": "Samples~/PistonsOnHexes"
+        },
+        {
+            "displayName": "Randomly selecting hexes",
+            "description": "An example of HexTile generation at runtime.",
+            "path": "Samples~/RandomlySelectingHexes"
+        }
+    ]
+}
