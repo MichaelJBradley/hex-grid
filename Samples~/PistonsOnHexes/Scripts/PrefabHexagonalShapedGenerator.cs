@@ -45,6 +45,9 @@ public class PrefabHexagonalShapedGenerator : MonoBehaviour, IGridGenerator
                 
                 // Save the Hex in the Dictionary so it can be referenced later.
                 hexes[hex] = worldHex.GetComponent<HexTile>();
+
+                // The HexTile must have the pos in order to correctly calculate neighbors, distance, etc.
+                hexes[hex].pos = hex;
             }
         }
         
