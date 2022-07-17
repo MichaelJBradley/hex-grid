@@ -2,6 +2,19 @@
 
 This sample generates a Hex grid in the shape of a parallelogram.
 
+## Features
+
+Randomly selecting hexes demonstrates the most basic grid generation. That is, iterating over a length and width with a
+double for loop.
+
+When generating a grid this way, the loop iterates over the two axes, Q and R. The two axes bisect each other at a 60°
+angle, resulting in the diamond shape.
+
+It also demonstrates how to select `Hex Tile`s from the `Hex Grid` by `Hex` position. At which point, the retrieving
+script can perform any necessary actions.
+
+## Scene
+
 The `ParallelogrammaticGrid` GameObject has two script components.
 
 1. The `Hex Grid` script holds a Collection of HexTiles, and calls the `Generate` method on start.
@@ -10,4 +23,3 @@ The `ParallelogrammaticGrid` GameObject has two script components.
 
 The `Selector` GameObject has a reference to the `ParallelogrammaticGrid`, which it uses to select a single Hex tile,
 and change its outline color.
-
