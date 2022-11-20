@@ -24,7 +24,7 @@ Hex Grid has been tested with Unity 2021.3.2f1, but may be compatible with other
 
 ### Generating a grid
 
-**TODO: ADD IMAGES FROM GIST**
+**TODO: ADD IMAGES FROM HEX GRID DOCS REPO**
 
 To generate a grid, create an empty GameObject and attach a `Hex Grid` script component.
 
