@@ -17,7 +17,5 @@ namespace Grid
         /// <param name="grid">The Dictionary in which to store generated
         /// HexTiles.</param>
         public void Generate(Dictionary<Hex, HexTile> grid);
-        // TODO: Apparently this can't be implemented because it's private. And it should have been
-        // public to begin with.
     }
 }
