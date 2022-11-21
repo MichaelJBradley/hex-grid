@@ -1,11 +1,9 @@
 {
-    "name": "Tests",
+    "name": "com.MichaelJBradley.HexGrid.Tests",
     "rootNamespace": "",
     "references": [
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
-        "GUID:f92c1ebeae7f54a9fa569258458aca3e",
-        "GUID:09bbe569886d2460d8af700253172281",
-        "GUID:44d516056ed0a4887a87bd64133799a4"
+        "GUID:9986536bc5e054e908a4144c605af0e2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
