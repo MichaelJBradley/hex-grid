@@ -1,7 +1,9 @@
 {
-    "name": "com.michaeljbradley.hex-grid.Runtime.Hex",
+    "name": "com.MichaelJBradley.HexGrid",
     "rootNamespace": "",
     "references": [
+        "GUID:f92c1ebeae7f54a9fa569258458aca3e",
+        "GUID:44d516056ed0a4887a87bd64133799a4",
         "GUID:09bbe569886d2460d8af700253172281"
     ],
     "includePlatforms": [],
