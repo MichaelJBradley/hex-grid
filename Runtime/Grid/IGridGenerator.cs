@@ -16,6 +16,6 @@ namespace Grid
         /// </summary>
         /// <param name="grid">The Dictionary in which to store generated
         /// HexTiles.</param>
-        void Generate(Dictionary<Hex, HexTile> grid);
+        public void Generate(Dictionary<Hex, HexTile> grid);
     }
 }
