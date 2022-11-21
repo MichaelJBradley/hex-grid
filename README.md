@@ -24,9 +24,13 @@ Hex Grid has been tested with Unity 2021.3.2f1, but may be compatible with other
 
 ### Generating a grid
 
-**TODO: ADD IMAGES FROM HEX GRID DOCS REPO**
+To generate a grid, create an empty GameObject.
 
-To generate a grid, create an empty GameObject and attach a `Hex Grid` script component.
+![new hex grid object](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/new-hex-grid-gameobject.png?raw=true)
+
+Add a `Hex Grid` script component from the HexGrid package.
+
+![add hex grid script](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/add-hex-grid-script.png?raw=true)
 
 The `Hex Grid` maintains references to `Hex Tiles`, and is responsible generating the grid from a grid generator. By
 default, `Hex Grid` generates on Start.
@@ -34,6 +38,11 @@ default, `Hex Grid` generates on Start.
 Create a new C# script for the grid generator, that implements both `MonoBehavior` and `IGridGenerator`.
 
 The grid generator holds any references to grid settings (size, orientation) and `Hex Tile` components (materials, prefabs, etc). For example grid generators, see: [Samples](#samples)
+
+The finished GameObject would look similar to this. In this case the grid generator has a material and two `Hex`
+fields for generating the grid.
+
+![completed hex grid](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/completed-hex-grid-gameobject.png?raw=true)
 
 Play the scene, and the `Hex Grid` generates grid at runtime.
 
