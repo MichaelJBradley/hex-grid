@@ -214,7 +214,16 @@ namespace Tests
             FloatHex a = new FloatHex(9.1f, 7.8f);
             FloatHex b = new FloatHex(1.6f, 2.2f);
 
-            Assert.That(a + b, Is.EqualTo(new FloatHex(10.7f, 10.0f)).Within(0001f));
+            Assert.That(a + b, Is.EqualTo(new FloatHex(10.7f, 10.0f)).Within(.0001f));
+        }
+        
+        [Test]
+        public void OperatorAddition_WithHex_DoesImplicitConversion()
+        {
+            FloatHex a = new FloatHex(12.1f, -10.3f, -1.8f);
+            Hex b = new Hex(-3, 5, -2);
+
+            Assert.That(a + b, Is.EqualTo(new FloatHex(9.1f, -5.3f, -3.8f)).Within(.0001f));
         }
 
         [Test]
@@ -224,6 +233,15 @@ namespace Tests
             FloatHex b = new FloatHex(16.99f, 24.125f);
 
             Assert.That(a - b, Is.EqualTo(new FloatHex(-4.59f, 241.775f)).Within(.0001f));
+        }
+
+        [Test]
+        public void OperatorSubtraction_WithHex_DoesImplicitConversion()
+        {
+            Hex a = new Hex(1, -4, 3);
+            FloatHex b = new FloatHex(-2.4f, 8.9f, -6.5f);
+
+            Assert.That(a - b, Is.EqualTo(new FloatHex(3.4f, -12.9f, 9.5f)).Within(.0001f));
         }
 
         [Test]
@@ -259,6 +277,14 @@ namespace Tests
             FloatHex h = new FloatHex(67.456f, 4598.12f);
 
             Assert.That(() => h / 0f, Throws.TypeOf<DivideByZeroException>());
+        }
+
+        [Test]
+        public void OperatorExplicitFloatHexToHex_ConvertsCorrectly()
+        {
+            FloatHex h = new FloatHex(7.2f, -1.1f, -6.1f);
+
+            Assert.That((Hex)h, Is.EqualTo(new Hex(7, -1, -6)));
         }
 
         [Test]
