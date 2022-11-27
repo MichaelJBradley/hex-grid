@@ -31,7 +31,7 @@ Add a `HexGrid` script component from the HexGrid package.
 
 ![add hex grid script](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/add-hex-grid-script.png?raw=true)
 
-The `HexGrid` maintains references to `HexTiles`, and is responsible generating the grid from a grid generator. By
+The `HexGrid` maintains references to `HexTile`s, and is responsible generating the grid from a grid generator. By
 default, `HexGrid` generates on Start.
 
 Create a new C# script for the grid generator, that implements both `MonoBehavior` and `IGridGenerator`.
@@ -57,7 +57,7 @@ information.
 | Sample | Feature demonstrated |
 | - | - |
 | [Pistons on hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/PistonsOnHexes) | - Hexagonal grid generation<br> - Generating grids from prefabs |
-| [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `HexTiles` at runtime<br> - Selecting `HexTiles` by hex position |
+| [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `HexTile`s at runtime<br> - Selecting `HexTile`s by hex position |
 
 ## Credits
 
