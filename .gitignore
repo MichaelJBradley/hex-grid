@@ -72,3 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Tt]estScripts/
 /[Aa]ssets/[Tt]estScripts.meta
 
+# Doxygen
+Doxy*
