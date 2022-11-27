@@ -10,16 +10,16 @@ double for loop.
 When generating a grid this way, the loop iterates over the two axes, Q and R. The two axes bisect each other at a 60°
 angle, resulting in the diamond shape.
 
-It also demonstrates how to select `Hex Tile`s from the `Hex Grid` by `Hex` position. At which point, the retrieving
+It also demonstrates how to select `HexTile`s from the `HexGrid` by `Hex` position. At which point, the retrieving
 script can perform any necessary actions.
 
 ## Scene
 
 The `ParallelogrammaticGrid` GameObject has two script components.
 
-1. The `Hex Grid` script holds a Collection of HexTiles, and calls the `Generate` method on start.
+1. The `HexGrid` script holds a Collection of HexTiles, and calls the `Generate` method on start.
 1. The `Single Material Diamond Shaped Grid Generator` defines the `Generate` method. It creates Hex tiles at runtime,
-   rather than from a prefab. It defines a `Hex Type` field which can be used to change the Hex tiles' orientation.
+   rather than from a prefab. It defines a `HexType` field which can be used to change the Hex tiles' orientation.
 
 The `Selector` GameObject has a reference to the `ParallelogrammaticGrid`, which it uses to select a single Hex tile,
 and change its outline color.

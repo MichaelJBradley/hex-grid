@@ -5,12 +5,11 @@ A Unity package designed to implement a hex grid for use as a map or anything el
 ## Overview
 
 Hex Grid supports the open ended generation of hex grids by handling the hex tile GameObject creation. It is meant to be
-as flexible as possible, so users must write the logic to generate a hex grid. Hex Grid, however, handles the underlying
-hex tile GameObject creation.
+as flexible as possible, so users must write the logic to generate a hex grid. Hex Grid, handles the underlying hex tile GameObject creation.
 
 ## Installation instructions
 
-Hex Grid conforms to Unity's package standards, so it can be installed using Unity's package manager.
+Hex Grid adheres to Unity's package standards, so it can be installed using Unity's package manager.
 
 This package does not exist in a registry. The two options are either
 * [Install from GitHub](https://docs.unity3d.com/Manual/upm-ui-giturl.html)
@@ -28,23 +27,23 @@ To generate a grid, create an empty GameObject.
 
 ![new hex grid object](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/new-hex-grid-gameobject.png?raw=true)
 
-Add a `Hex Grid` script component from the HexGrid package.
+Add a `HexGrid` script component from the HexGrid package.
 
 ![add hex grid script](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/add-hex-grid-script.png?raw=true)
 
-The `Hex Grid` maintains references to `Hex Tiles`, and is responsible generating the grid from a grid generator. By
-default, `Hex Grid` generates on Start.
+The `HexGrid` maintains references to `HexTiles`, and is responsible generating the grid from a grid generator. By
+default, `HexGrid` generates on Start.
 
 Create a new C# script for the grid generator, that implements both `MonoBehavior` and `IGridGenerator`.
 
-The grid generator holds any references to grid settings (size, orientation) and `Hex Tile` components (materials, prefabs, etc). For example grid generators, see: [Samples](#samples)
+The grid generator holds any references to grid settings (size, orientation) and `HexTile` components (materials, prefabs, etc). For example grid generators, see: [Samples](#samples)
 
 The finished GameObject would look similar to this. In this case the grid generator has a material and two `Hex`
 fields for generating the grid.
 
 ![completed hex grid](https://github.com/MichaelJBradley/hex-grid-docs/blob/main/images/readme/workflow/completed-hex-grid-gameobject.png?raw=true)
 
-Play the scene, and the `Hex Grid` generates grid at runtime.
+Play the scene, and the `HexGrid` generates grid at runtime.
 
 ## Reference
 
@@ -58,7 +57,7 @@ information.
 | Sample | Feature demonstrated |
 | - | - |
 | [Pistons on hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/PistonsOnHexes) | - Hexagonal grid generation<br> - Generating grids from prefabs |
-| [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `Hex Tiles` at runtime<br> - Selecting `Hex Tiles` by hex position |
+| [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `HexTiles` at runtime<br> - Selecting `HexTiles` by hex position |
 
 ## Credits
 
