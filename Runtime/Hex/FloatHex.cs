@@ -181,8 +181,6 @@ public class FloatHex : IEnumerable<float>
     /// Rounds the FloatHex to the nearest Hex.
     /// This is the proper way to convert from FloatHex to Hex, because flooring a FloatHex will not always result in a
     /// valid Hex.
-    /// 
-    /// Source: https://www.redblobgames.com/grids/hexagons/#rounding
     /// </summary>
     /// <returns>The rounded FloatHex as a new Hex object.</returns>
     public Hex Round()
@@ -334,44 +332,6 @@ public class FloatHex : IEnumerable<float>
     }
 
     /// <summary>
-    /// Performs component-wise addition on the Hex and FloatHex.
-    /// </summary>
-    /// <param name="a">The augend, or the FloatHex to add to.</param>
-    /// <param name="b">The addend, or Hex to add.</param>
-    /// <returns>A new FloatHex object with each component containing the sum of
-    /// their respective additions.</returns>
-    public static FloatHex operator +(FloatHex a, Hex b)
-    {
-        FloatHex ret = new FloatHex();
-        
-        for (uint i = 0; i < Hex.NumSaved; i++)
-        {
-            ret[i] = a[i] + b[i];
-        }
-
-        return ret;
-    }
-    
-    /// <summary>
-    /// Performs component-wise addition on the Hex and FloatHex.
-    /// </summary>
-    /// <param name="a">The augend, or the Hex to add to.</param>
-    /// <param name="b">The addend, or FloatHex to add.</param>
-    /// <returns>A new FloatHex object with each component containing the sum of
-    /// their respective additions.</returns>
-    public static FloatHex operator +(Hex a, FloatHex b)
-    {
-        FloatHex ret = new FloatHex();
-        
-        for (uint i = 0; i < Hex.NumSaved; i++)
-        {
-            ret[i] = a[i] + b[i];
-        }
-
-        return ret;
-    }
-
-    /// <summary>
     /// Performs component-wise subtraction on the FloatHexes.
     /// </summary>
     /// <param name="a">The minuend, or the FloatHex to subtract from.</param>
@@ -379,45 +339,6 @@ public class FloatHex : IEnumerable<float>
     /// <returns>A new FloatHex object with each component containing the difference
     /// of their respective subtractions.</returns>
     public static FloatHex operator -(FloatHex a, FloatHex b)
-    {
-        FloatHex ret = new FloatHex();
-
-        for (uint i = 0; i < Hex.NumSaved; i++)
-        {
-            ret[i] = a[i] - b[i];
-        }
-
-        return ret;
-    }
-
-    
-    /// <summary>
-    /// Performs component-wise subtraction on the Hex and FloatHex.
-    /// </summary>
-    /// <param name="a">The minuend, or the FloatHex to subtract from.</param>
-    /// <param name="b">The subtrahend, or the Hex to subtract.</param>
-    /// <returns>A new FloatHex object with each component containing the difference
-    /// of their respective subtractions.</returns>
-    public static FloatHex operator -(FloatHex a, Hex b)
-    {
-        FloatHex ret = new FloatHex();
-
-        for (uint i = 0; i < Hex.NumSaved; i++)
-        {
-            ret[i] = a[i] - b[i];
-        }
-
-        return ret;
-    }
-
-    /// <summary>
-    /// Performs component-wise subtraction on the Hex and FloatHex.
-    /// </summary>
-    /// <param name="a">The minuend, or the Hex to subtract from.</param>
-    /// <param name="b">The subtrahend, or the FloatHex to subtract.</param>
-    /// <returns>A new FloatHex object with each component containing the difference
-    /// of their respective subtractions.</returns>
-    public static FloatHex operator -(Hex a, FloatHex b)
     {
         FloatHex ret = new FloatHex();
 
@@ -491,6 +412,22 @@ public class FloatHex : IEnumerable<float>
 
         return ret;
     }
+
+    /// <summary>
+    /// Implicitly convert a Hex to a FloatHex.
+    /// </summary>
+    /// <param name="h">The Hex to convert.</param>
+    /// <returns>A FloatHex representation of h</returns>
+    public static implicit operator FloatHex(Hex h) => new FloatHex(h);
+
+    /// <summary>
+    /// Explicitly convert a FloatHex to Hex by rounding it.
+    ///
+    /// See: <c>FloatHex.Round</c>
+    /// </summary>
+    /// <param name="h">The FloatHex to convert.</param>
+    /// <returns>The rounded FloatHex as a Hex</returns>
+    public static explicit operator Hex(FloatHex h) => h.Round();
 
     /// <summary>
     /// Calculates the distance between two Hexes.
