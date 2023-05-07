@@ -19,6 +19,12 @@ This package does not exist in a registry. The two options are either
 
 Hex Grid has been tested with Unity 2021.3.2f1, but may be compatible with other releases.
 
+### Dependencies
+
+Hex Grid depends on the
+[SerializableDictionaryLite](https://openupm.com/packages/com.rotaryheart.serializabledictionarylite/)
+package to display dictionaries in the editor. 
+
 ## Workflows
 
 ### Generating a grid
