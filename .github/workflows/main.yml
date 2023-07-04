@@ -11,7 +11,7 @@ jobs:
         lfs: true
 
     - name: Unity - Test runner
-      uses: trudeaua21/unity-test-runner@main
+      uses: game-ci/unity-test-runner@v2
       env:
         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with: 
@@ -25,3 +25,4 @@ jobs:
       with:
         name: Test Results
         path: artifacts
+
