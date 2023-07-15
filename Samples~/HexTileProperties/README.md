@@ -10,7 +10,7 @@ HexTile properties demonstrates one possible way to add a set of properties to e
 `ScriptableObject` to avoid duplicating the same property map for each `HexTile`, or put another way, only one instance
 of each property map exists for all similar `HexTile`s.
 
-Currently, `HexTiles` each maintain a reference to three property types (`int`, `bool`, `string`). The idea here was to
+Currently, `HexTiles` each maintain a reference to three property types (`int`, `bool`, `float`). The idea here was to
 have some standard way to access properties that may be used for other features within Hex Grid. However, this method is
 a little cumbersome when using `ScriptableObject`s and may change in the future.
 
