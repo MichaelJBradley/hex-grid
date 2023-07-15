@@ -64,6 +64,7 @@ information.
 | - | - |
 | [Pistons on hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/PistonsOnHexes) | - Hexagonal grid generation<br> - Generating grids from prefabs |
 | [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `HexTile`s at runtime<br> - Selecting `HexTile`s by hex position |
+| [HexTile properties](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/HexTileProperties) | - Rectangular grid generation<br> - `HexTile` properties from `ScriptableObjects` |
 
 ## Credits
 
