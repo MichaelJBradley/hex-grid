@@ -1,6 +1,6 @@
 {
     "name": "com.michaeljbradley.hex-grid",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A package to implement hexagonal grids in Unity projects.",
     "displayName": "Hex Grid",
     "unity": "2021.3",
@@ -13,6 +13,9 @@
     "keywords": ["hex", "hexagonal", "hexagon", "generator", "map", "grid"],
     "license": "MIT",
     "licenseUrl": "https://github.com/MichaelJBradley/hex-grid/blob/master/LICENSE.md",
+    "dependencies": {
+        "com.rotaryheart.serializabledictionarylite": "2.6.11"
+    },
     "samples": [
         {
             "displayName": "Pistons on hexes",

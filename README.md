@@ -19,6 +19,12 @@ This package does not exist in a registry. The two options are either
 
 Hex Grid has been tested with Unity 2021.3.2f1, but may be compatible with other releases.
 
+### Dependencies
+
+Hex Grid depends on the
+[SerializableDictionaryLite](https://openupm.com/packages/com.rotaryheart.serializabledictionarylite/)
+package to display dictionaries in the editor. 
+
 ## Workflows
 
 ### Generating a grid
@@ -58,6 +64,7 @@ information.
 | - | - |
 | [Pistons on hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/PistonsOnHexes) | - Hexagonal grid generation<br> - Generating grids from prefabs |
 | [Randomly selecting hexes](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/RandomlySelectingHexes) | - Generating `HexTile`s at runtime<br> - Selecting `HexTile`s by hex position |
+| [HexTile properties](https://github.com/MichaelJBradley/hex-grid/tree/master/Samples%7E/HexTileProperties) | - Rectangular grid generation<br> - `HexTile` properties from `ScriptableObjects` |
 
 ## Credits
 
