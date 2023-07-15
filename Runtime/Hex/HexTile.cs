@@ -104,6 +104,7 @@ public class HexTile : MonoBehaviour
     }
 
     private IHexTileProperties<bool> propertyBoolean;
+
     /// <summary>
     /// A convenience property to get and set boolean properties. 
     /// 

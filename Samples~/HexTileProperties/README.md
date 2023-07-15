@@ -10,15 +10,16 @@ HexTile properties demonstrates one possible way to add a set of properties to e
 `ScriptableObject` to avoid duplicating the same property map for each `HexTile`, or put another way, only one instance
 of each property map exists for all similar `HexTile`s.
 
-Currently, `HexTiles` each maintain a reference to three property types (`int`, `bool`, `float`). The idea here was to
+Currently, `HexTiles` each maintain a reference to three property types (`int`, `bool`, and `float`). The idea here was to
 have some standard way to access properties that may be used for other features within Hex Grid. However, this method is
 a little cumbersome when using `ScriptableObject`s and may change in the future.
 
 To use a `ScriptableObject` as the source of `HexTile` properties, this sample creates one `ScriptableObject` for each
-flavor of `HexTile`. In this case, they are based on the color of the tile. During `HexGrid` generation, the `Generator`
-creates `HexTile`s as normal, but it also adds an `IHexTileProperty` implementation for `int` and `bool` properties. It
-then sets the underlying `Dictionary` references to those from the `ScriptableObjects`. When the property map is
-accessed through the `HexTile` script, it loads the `IHexTileProperty` from the GameObject and saves a reference to it.
+flavor of `HexTile`. In this case, they are based on the color of the tile. During `HexGrid` generation, the `Generate`
+method creates `HexTile`s as normal, but it also adds an `IHexTileProperty` implementation for `int` and `bool`
+properties. It then sets the underlying `Dictionary` references to those from the `ScriptableObjects`. When the
+property map is accessed through the `HexTile` script, it loads the `IHexTileProperty` from the GameObject and saves a
+reference to it.
 
 ### Rectangular grid generation
 
